@@ -20,9 +20,9 @@ public class Date {
    * @param d Day
    */
   public Date(int y, int m, int d) {
-    year = y;
-    month = m;
-    day = d;
+
+    set(y,m,d);
+
   }
 
   /**
@@ -61,7 +61,55 @@ public class Date {
    */
   @Override
   public String toString() {
-    return String.format("%04d-%02d-%2d", year, month, day);
+    return String.format("%04d-%02d-%02d", year, month, day);
   }
+
+  private void set(int y, int m, int d) {
+    if (y < 0) {
+      throw new IllegalArgumentException("year out of range");
+    }
+    if (m < 0 || m > 12) {
+      throw new IllegalArgumentException("month out of range");
+    }
+
+    boolean validDay = true;
+    switch(m){
+      case 1: validDay = d <= 31;
+              break;
+      case 2: validDay = d <= 28;
+              break;
+      case 3: validDay = d <= 31;
+              break;
+      case 4: validDay = d <= 30;
+              break;
+      case 5: validDay = d <= 31;
+              break;
+      case 6: validDay = d <= 30;
+              break;
+      case 7: validDay = d <= 31;
+              break;
+      case 8: validDay = d <= 31;
+              break;
+      case 9: validDay = d <= 30;
+              break;
+      case 10: validDay = d <= 31;
+              break;
+      case 11: validDay = d <= 30;
+              break;
+      case 12: validDay = d <= 31;
+              break;
+
+    }
+
+    if (d<0||validDay==false) {
+      throw new IllegalArgumentException("day out of range");
+    }
+    else {
+      year = y;
+      month = m;
+      day = d;
+    }
+  }
+
 
 }

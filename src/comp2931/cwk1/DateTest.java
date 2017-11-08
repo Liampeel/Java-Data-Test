@@ -51,9 +51,16 @@ public void toStringTest() {
   }
 
   @Test(expected=IllegalArgumentException.class)
-  public void februaryTN() {
+  public void februaryTwenNine() {
     new Date(2017, 2, 29);
   }
 
+  @Test
+  public void equality() {
+    assertTrue(januaryFirst.equals(januaryFirst));
+    assertTrue(januaryFirst.equals(new Date(2017, 1, 1)));
+    assertFalse(januaryFirst.equals(new Date(2017, 1, 2)));
+
+  }
 
 }

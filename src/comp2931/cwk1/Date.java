@@ -110,6 +110,23 @@ public class Date {
       day = d;
     }
   }
-
+  @Override
+  public boolean equals(Object other) {
+    if (other == this) {
+      // 'other' is same object as this one!
+      return true;
+    }
+    else if (! (other instanceof Date)) {
+      // 'other' is not a Time object
+      return false;
+    }
+    else {
+      // Compare fields
+      Date otherDate = (Date) (other);
+      return getYear() == otherDate.getYear()
+          && getMonth() == otherDate.getMonth()
+          && getDay() == otherDate.getDay();
+    }
+  }
 
 }

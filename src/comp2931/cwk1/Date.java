@@ -5,12 +5,18 @@ package comp2931.cwk1;
 
 /**
  * Simple representation of a date.
- */
+
+  * @author Liam Peel sc16lep@leeds.ac.uk
+
+  */
+
 public class Date {
 
   private int year;
   private int month;
   private int day;
+
+
 
   /**
    * Creates a date using the given values for year, month and day.
@@ -72,12 +78,11 @@ public class Date {
       throw new IllegalArgumentException("month out of range");
     }
 
-    boolean validDay = true;
+    boolean validDay = true; //switch case for the months of year
     switch(m){
       case 1: validDay = d <= 31;
               break;
-      case 2: validDay = d <= 28;
-              break;
+
       case 3: validDay = d <= 31;
               break;
       case 4: validDay = d <= 30;
@@ -100,6 +105,12 @@ public class Date {
               break;
 
     }
+    if (m == 2 && ((y % 4) == 0) && d > 29) {
+      throw new IllegalArgumentException ("Leap year February date exceeded");
+    } else if (m == 2 && d > 28 && (y % 4) != 0){
+      throw new IllegalArgumentException ("February Date exceeded");
+    }
+
 
     if (d<0||validDay==false) {
       throw new IllegalArgumentException("day out of range");
@@ -108,6 +119,7 @@ public class Date {
       year = y;
       month = m;
       day = d;
+
     }
   }
   @Override
@@ -131,22 +143,42 @@ public class Date {
 
   public int getDayOfYear()
     {
-      switch(month)
+      switch(month) //switch case for days of year
       {
         case 1: return day;
         case 2: return day + 31;
-        case 3: return day + 59;
-        case 4: return day + 90;
-        case 5: return day + 120;
-        case 6: return day + 151;
-        case 7: return day + 181;
-        case 8: return day + 212;
-        case 9: return day + 243;
-        case 10: return day + 273;
-        case 11: return day + 304;
-        case 12: return day + 334;
-        default: return 0;
+        case 3:  day += 59;
+                 break;
+        case 4:  day += 90;
+                break;
+        case 5:  day += 120;
+                break;
+        case 6:  day += 151;
+                break;
+        case 7:  day += 181;
+                break;
+        case 8:  day += 212;
+                break;
+        case 9:  day += 243;
+                break;
+        case 10:  day += 273;
+                break;
+        case 11:  day += 304;
+                break;
+        case 12:  day += 334;
+                break;
+      }
+      if(month>2 && (year % 4) == 0)
+      {
+          day += 1;
+          return day;
+      }
+      else
+      {
+          return day;
       }
     }
+
+
 
 }

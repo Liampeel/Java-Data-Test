@@ -129,4 +129,24 @@ public class Date {
     }
   }
 
+  public int getDayOfYear()
+    {
+      switch(month)
+      {
+        case 1: return day;
+        case 2: return day + 31;
+        case 3: return day + 59;
+        case 4: return day + 90;
+        case 5: return day + 120;
+        case 6: return day + 151;
+        case 7: return day + 181;
+        case 8: return day + 212;
+        case 9: return day + 243;
+        case 10: return day + 273;
+        case 11: return day + 304;
+        case 12: return day + 334;
+        default: return 0;
+      }
+    }
+
 }
